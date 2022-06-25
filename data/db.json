@@ -24,6 +24,11 @@
       "id": 5,
       "title": "back from work",
       "completed": false
+    },
+    {
+      "id": 6,
+      "title": "",
+      "completed": false
     }
   ]
 }

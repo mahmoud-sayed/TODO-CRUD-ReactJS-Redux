@@ -19,7 +19,7 @@ const TodosData = () => {
         todoList?.length === 0 ? <h2 style={{ color: '#3A7BD5' }}>There is No todo </h2> :
           todoList?.map(todo =>
 
-            <Todo key={todo.id} title={todo.title} completed={todo.completed} />
+            <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} />
 
           )
       }

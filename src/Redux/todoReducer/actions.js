@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_TODO, CREATE_NEW_TODO } from "./types";
+import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO } from "./types";
 
 
 const DATA_URL = 'http://localhost:100/data';
@@ -33,7 +33,9 @@ export const handelCreate = async (id, title, dispatch) => {
 
 };
 
-export const handelEdit = () => {
+export const handelEdit = (id, todoList, dispatch) => {
+  const itemToEdit = todoList.filter(todo => todo.id === id);
+
 
 };
 
@@ -41,7 +43,13 @@ export const handelCheck = () => {
 
 };
 
-export const handelDelete = () => {
+export const handelDelete = async (id, todoList, dispatch) => {
+  const filterdItems = todoList.filter(todo => todoList.id !== id);
 
+  await axios.delete(`${DATA_URL}/${id}`, filterdItems);
+  return dispatch({
+    type: DELETE_TODO,
+    payload: filterdItems
+  });
 };
 

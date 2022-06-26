@@ -13,6 +13,7 @@ const Form = () => {
     e.preventDefault();
     const id = todoList[todoList.length - 1].id + 1;
     handelCreate(id, title, dispatch);
+    setTitle('');
   };
 
 

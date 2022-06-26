@@ -1,7 +1,21 @@
 import React from 'react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { handelDelete, handelEdit } from './../Redux/todoReducer/actions';
 
-const Todo = ({ title, completed }) => {
+const Todo = ({ id, title, completed }) => {
+
+  const { todoList } = useSelector(state => state.todoReducer);
+
+  const dispatch = useDispatch();
+
+  const deleteAction = (id) => {
+    handelDelete(id, todoList, dispatch);
+  };
+
+  const editAction = (id) => {
+    handelEdit(id, todoList, dispatch);
+  };
 
   return (
     <div className='todos'>
@@ -16,8 +30,8 @@ const Todo = ({ title, completed }) => {
             <p>{title}</p>
           </div>
           <div className='todo-actions'>
-            <FaEdit className='todo-edit' />
-            <FaTrashAlt className='todo-delete' />
+            <FaEdit className='todo-edit' onClick={() => editAction(id)} />
+            <FaTrashAlt className='todo-delete' onClick={() => deleteAction(id)} />
           </div>
         </li>
 

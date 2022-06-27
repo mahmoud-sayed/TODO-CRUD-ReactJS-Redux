@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO } from "./types";
+import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO } from "./types";
 
 
 const DATA_URL = 'http://localhost:100/data';
@@ -33,9 +33,12 @@ export const handelCreate = async (id, title, dispatch) => {
 
 };
 
-export const handelEdit = (id, todoList, dispatch) => {
+export const passDataToEdit = (id, todoList, dispatch, editSign, setEditSign) => {
   const itemToEdit = todoList.filter(todo => todo.id === id);
-
+  return dispatch({
+    type: EDIT_TODO,
+    payload: id, itemToEdit, editSign, setEditSign
+  });
 
 };
 

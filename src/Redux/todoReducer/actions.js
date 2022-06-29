@@ -25,7 +25,7 @@ export const handelFetch = async (dispatch) => {
 export const handelCreate = async (id, title, dispatch) => {
 
   const data = { id, title, completed: false };
-  await axios.post(DATA_URL, data);
+  //await axios.post(DATA_URL, data);
   return dispatch({
     type: CREATE_NEW_TODO,
     payload: data
@@ -33,10 +33,9 @@ export const handelCreate = async (id, title, dispatch) => {
 
 };
 
-export const passDataToEdit = (id, todoList, dispatch, editSign, setEditSign) => {
+export const passDataToEdit = (id, todoList, editSign, setEditSign, dispatch) => {
   const itemToEdit = todoList.filter(todo => todo.id === id);
-  const i = { id, itemToEdit, editSign, setEditSign };
-  console.log(i);
+
   return dispatch({
     type: DATA_TO_EDIT,
     payload: id, itemToEdit, editSign, setEditSign

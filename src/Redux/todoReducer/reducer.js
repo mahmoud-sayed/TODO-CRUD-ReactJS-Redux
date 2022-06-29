@@ -1,8 +1,10 @@
 import { CHECK_CURRENT_TODO, DELETE_TODO, EDIT_TODO, CREATE_NEW_TODO, FETCH_TODO, DATA_TO_EDIT } from './types';
 
-const todoReducer = (state = { todoList: null, dataToEdit: {} }, action) => {
 
 
+const todoReducer = (state = { todoList: [], dataToEdit: {} }, action) => {
+
+  console.log(state.dataToEdit);
   switch (action.type) {
     case FETCH_TODO:
       return { ...state, todoList: action.payload };
@@ -21,15 +23,16 @@ const todoReducer = (state = { todoList: null, dataToEdit: {} }, action) => {
 
     case DATA_TO_EDIT:
       return { ...state, dataToEdit: { ...action.payload } };
-
     default:
       return state;
-  }
-
-
-
+  };
 
 };
+
+
+
+
+
 
 export default todoReducer;
 

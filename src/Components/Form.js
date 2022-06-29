@@ -7,8 +7,10 @@ const Form = () => {
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
 
-  const { todoList, dataToEdit } = useSelector(state => state.todoReducer);
+  const { todoList } = useSelector(state => state.todoReducer);
+  const { dataToEdit } = useSelector(state => state.todoReducer);
 
+  console.log(dataToEdit);
 
   const formSubmit = (e) => {
     e.preventDefault();

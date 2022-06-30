@@ -1,28 +1,44 @@
 import { CHECK_CURRENT_TODO, DELETE_TODO, EDIT_TODO, CREATE_NEW_TODO, FETCH_TODO, DATA_TO_EDIT } from './types';
 
 
+const initialState = { todoList: [], dataToEdit: {} };
 
-const todoReducer = (state = { todoList: [], dataToEdit: {} }, action) => {
+const todoReducer = (state = initialState, action) => {
 
-  console.log(state.dataToEdit);
+
   switch (action.type) {
     case FETCH_TODO:
-      return { ...state, todoList: action.payload };
+      return {
+        todoList: action.payload,
+        dataToEdit: state.dataToEdit
+      };
 
     case CREATE_NEW_TODO:
-      return { ...state, todoList: [...state.todoList, action.payload] };
+      return {
+        todoList: [...state.todoList, action.payload],
+        dataToEdit: state.dataToEdit
+      };
 
-    case EDIT_TODO:
-      return state;
+    // case EDIT_TODO:
+    //   return state;
 
-    case CHECK_CURRENT_TODO:
-      return state;
+    // case CHECK_CURRENT_TODO:
+    //   return state;
 
     case DELETE_TODO:
-      return { ...state, ...state.todoList, todoList: action.payload };
+
+      return {
+
+        todoList: [...action.payload],
+        dataToEdit: state.dataToEdit
+
+      };
 
     case DATA_TO_EDIT:
-      return { ...state, dataToEdit: { ...action.payload } };
+      return {
+        todoList: state.todoList,
+        dataToEdit: { ...action.payload }
+      };
     default:
       return state;
   };

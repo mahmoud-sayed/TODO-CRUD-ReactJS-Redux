@@ -19,26 +19,6 @@
       "id": 5,
       "title": "back from work",
       "completed": false
-    },
-    {
-      "id": 6,
-      "title": "test1",
-      "completed": false
-    },
-    {
-      "id": 7,
-      "title": "test2",
-      "completed": false
-    },
-    {
-      "id": 8,
-      "title": "test3",
-      "completed": false
-    },
-    {
-      "id": 9,
-      "title": "test4",
-      "completed": false
     }
   ]
 }

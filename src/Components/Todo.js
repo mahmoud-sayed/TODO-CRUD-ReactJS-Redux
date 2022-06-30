@@ -9,6 +9,8 @@ const Todo = ({ id, title, completed }) => {
   const [editSign, setEditSign] = useState(false);
 
   const dispatch = useDispatch();
+
+
   const deleteAction = (id) => {
     handelDelete(id, todoList, dispatch);
   };

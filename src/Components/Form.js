@@ -8,9 +8,9 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const { todoList } = useSelector(state => state.todoReducer);
-  const { dataToEdit } = useSelector(state => state.todoReducer);
+  const data = useSelector(state => state.todoReducer.dataToEdit);
 
-  console.log(dataToEdit);
+  console.log(data);
 
   const formSubmit = (e) => {
     e.preventDefault();

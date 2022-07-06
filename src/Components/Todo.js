@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { handelDelete, handelEdit, passDataToEdit } from './../Redux/todoReducer/actions';
+import { handelDelete, passDataToEdit } from './../Redux/todoReducer/actions';
 
 const Todo = ({ id, title, completed }) => {
 
   const { todoList } = useSelector(state => state.todoReducer);
-  const [editSign, setEditSign] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -16,8 +15,8 @@ const Todo = ({ id, title, completed }) => {
   };
 
   const getDataToEdit = (id) => {
-    setEditSign(true);
-    passDataToEdit(id, todoList, editSign, setEditSign, dispatch);
+
+    passDataToEdit(id, todoList, dispatch);
   };
 
   return (

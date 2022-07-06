@@ -19,8 +19,11 @@ const todoReducer = (state = initialState, action) => {
         dataToEdit: state.dataToEdit
       };
 
-    // case EDIT_TODO:
-    //   return state;
+    case EDIT_TODO:
+      return {
+        todoList: [...state.todoList, action.payload],
+        dataToEdit: {}
+      };
 
     // case CHECK_CURRENT_TODO:
     //   return state;

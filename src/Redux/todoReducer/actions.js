@@ -33,20 +33,25 @@ export const handelCreate = async (id, title, dispatch) => {
 
 };
 
-export const passDataToEdit = (id, todoList, editSign, setEditSign, dispatch) => {
-  const itemToEdit = todoList.filter(todo => todo.id === id);
+export const passDataToEdit = (id, todoList, dispatch) => {
 
-  const items = { itemToEdit, id, editSign, setEditSign };
+  const itemToEdit = todoList.filter(todo => todo.id === id);
+  const items = { itemToEdit, id };
   return dispatch({
     type: DATA_TO_EDIT,
     payload: items
   });
 
-
-
 };
 
-export const handelEdit = () => {
+export const handelEdit = (id, editedTitle, dispatch) => {
+
+  const title = { title: editedTitle };
+  axios.put(`${DATA_URL}/${id}`, title);
+  return dispatch({
+    type: EDIT_TODO,
+    payload: title
+  });
 
 };
 

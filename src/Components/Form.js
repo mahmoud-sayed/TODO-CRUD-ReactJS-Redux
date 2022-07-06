@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlus, FaEdit } from 'react-icons/fa';
-import { handelCreate } from '../Redux/todoReducer/actions';
+import { handelCreate, handelEdit } from '../Redux/todoReducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Form = () => {
   const [title, setTitle] = useState('');
+  const [editedTitle, setEditedTitle] = useState('');
   const dispatch = useDispatch();
 
   const { todoList } = useSelector(state => state.todoReducer);
-  const data = useSelector(state => state.todoReducer.dataToEdit);
+  const { itemToEdit, id } = useSelector(state => state.todoReducer.dataToEdit);
 
-  console.log(data);
+  useEffect(() => {
+    if (itemToEdit) {
+      setEditedTitle(itemToEdit[0].title);
+    }
+  }, [itemToEdit]);
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -19,19 +24,22 @@ const Form = () => {
     setTitle('');
   };
 
-
-
+  const formEditSubmit = (e) => {
+    e.preventDefault();
+    handelEdit(id, editedTitle, dispatch);
+    setEditedTitle('');
+  };
 
   return (
-    <form onSubmit={formSubmit}>
+    <form onSubmit={itemToEdit ? formEditSubmit : formSubmit}>
       <input
         type="text"
         placeholder='Add ToDo'
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
+        onChange={(e) => itemToEdit ? setEditedTitle(e.target.value) : setTitle(e.target.value)}
+        value={itemToEdit ? editedTitle : title}
       />
-      <button type='submit'> <FaPlus /></button>
-    </form>
+      <button type='submit'> {itemToEdit ? <FaEdit /> : <FaPlus />}</button>
+    </form >
   );
 };
 

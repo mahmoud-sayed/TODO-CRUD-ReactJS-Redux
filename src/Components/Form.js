@@ -9,7 +9,8 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const { todoList } = useSelector(state => state.todoReducer);
-  const { itemToEdit, id } = useSelector(state => state.todoReducer.dataToEdit);
+  const data = useSelector(state => state.todoReducer.dataToEdit);
+  const { itemToEdit, id } = data;
 
   useEffect(() => {
     if (itemToEdit) {
@@ -19,14 +20,20 @@ const Form = () => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    const id = todoList[todoList.length - 1].id + 1;
-    handelCreate(id, title, dispatch);
-    setTitle('');
+    if (todoList.length === 0) {
+      const id = 1;
+      handelCreate(id, title, dispatch);
+      setTitle('');
+    } else {
+      const id = todoList[todoList.length - 1].id + 1;
+      handelCreate(id, title, dispatch);
+      setTitle('');
+    }
   };
 
   const formEditSubmit = (e) => {
     e.preventDefault();
-    handelEdit(id, editedTitle, dispatch);
+    handelEdit(id, editedTitle, data, dispatch);
     setEditedTitle('');
   };
 

@@ -5,9 +5,6 @@ import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO, DATA_TO_EDIT } fro
 const DATA_URL = 'http://localhost:100/data';
 export const handelFetch = async (dispatch) => {
 
-
-
-
   try {
     const response = await axios.get(DATA_URL);
     const data = response.data;
@@ -44,10 +41,10 @@ export const passDataToEdit = (id, todoList, dispatch) => {
 
 };
 
-export const handelEdit = (id, editedTitle, dispatch) => {
+export const handelEdit = async (id, editedTitle, data, dispatch) => {
 
-  const title = { title: editedTitle };
-  axios.put(`${DATA_URL}/${id}`, title);
+  const title = { ...data, title: editedTitle };
+  await axios.put(`${DATA_URL}/${id}`, title);
   return dispatch({
     type: EDIT_TODO,
     payload: title

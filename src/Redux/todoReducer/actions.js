@@ -43,8 +43,8 @@ export const passDataToEdit = (id, todoList, dispatch) => {
 
 export const handelEdit = async (id, editedTitle, data, dispatch) => {
 
-  const title = { ...data, title: editedTitle };
-  await axios.put(`${DATA_URL}/${id}`, title);
+  const title = { title: editedTitle };
+  await axios.patch(`${DATA_URL}/${id}`, title);
   return dispatch({
     type: EDIT_TODO,
     payload: title

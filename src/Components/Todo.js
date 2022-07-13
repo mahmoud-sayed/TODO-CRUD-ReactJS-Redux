@@ -21,8 +21,8 @@ const Todo = ({ id, title, completed }) => {
   };
 
   const checkAction = (id) => {
-    setCheck(!completed);
-    handelCheck(id, todoList, dispatch);
+    const FilteredItemToCheck = todoList.filter(item => item.id === id);
+    handelCheck(id, FilteredItemToCheck, dispatch);
   };
 
   return (
@@ -32,7 +32,7 @@ const Todo = ({ id, title, completed }) => {
           <div className='todo-data'>
             <input
               type="checkbox"
-              checked={check}
+              checked={completed}
               id="check"
               onChange={() => checkAction(id)}
             />

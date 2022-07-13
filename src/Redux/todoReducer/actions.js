@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO, DATA_TO_EDIT } from "./types";
+import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO, DATA_TO_EDIT, CHECK_CURRENT_TODO } from "./types";
 
 
 const DATA_URL = 'http://localhost:100/data';
@@ -52,8 +52,14 @@ export const handelEdit = async (id, editedTitle, data, dispatch) => {
 
 };
 
-export const handelCheck = ({ id, todoList, dispatch }) => {
+export const handelCheck = async (id, FilteredItemToCheck, dispatch) => {
 
+  const itemAfterCheck = { completed: !FilteredItemToCheck[0].completed };
+  await axios.patch(`${DATA_URL}/${id}`, { completed: !FilteredItemToCheck[0].completed });
+  return dispatch({
+    type: CHECK_CURRENT_TODO,
+    payload: itemAfterCheck
+  });
 };
 
 export const handelDelete = async (id, todoList, dispatch) => {

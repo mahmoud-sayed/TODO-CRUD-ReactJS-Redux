@@ -52,7 +52,7 @@ export const handelEdit = async (id, editedTitle, data, dispatch) => {
 
 };
 
-export const handelCheck = () => {
+export const handelCheck = ({ id, todoList, dispatch }) => {
 
 };
 

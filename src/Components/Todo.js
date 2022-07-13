@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { handelDelete, passDataToEdit } from './../Redux/todoReducer/actions';
+import { handelDelete, passDataToEdit, handelCheck } from './../Redux/todoReducer/actions';
 
 const Todo = ({ id, title, completed }) => {
 
   const { todoList } = useSelector(state => state.todoReducer);
+  const [check, setCheck] = useState(completed);
 
   const dispatch = useDispatch();
 
@@ -19,6 +20,11 @@ const Todo = ({ id, title, completed }) => {
     passDataToEdit(id, todoList, dispatch);
   };
 
+  const checkAction = (id) => {
+    setCheck(!completed);
+    handelCheck(id, todoList, dispatch);
+  };
+
   return (
     <div className='todos'>
       <ul>
@@ -26,8 +32,9 @@ const Todo = ({ id, title, completed }) => {
           <div className='todo-data'>
             <input
               type="checkbox"
-              checked={completed}
+              checked={check}
               id="check"
+              onChange={() => checkAction(id)}
             />
             <p>{title}</p>
           </div>

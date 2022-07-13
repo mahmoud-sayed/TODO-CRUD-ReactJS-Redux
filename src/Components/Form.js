@@ -32,7 +32,7 @@ const Form = () => {
   };
 
   const formEditSubmit = (e) => {
-    e.preventDefault();
+
     handelEdit(id, editedTitle, data, dispatch);
     setEditedTitle('');
   };

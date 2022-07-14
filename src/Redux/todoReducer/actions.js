@@ -1,5 +1,7 @@
 import axios from "axios";
+import { addTodo } from "../../firebase/services/todo.services";
 import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO, DATA_TO_EDIT, CHECK_CURRENT_TODO } from "./types";
+
 
 
 const DATA_URL = 'http://localhost:100/data';
@@ -22,7 +24,8 @@ export const handelFetch = async (dispatch) => {
 export const handelCreate = async (id, title, dispatch) => {
 
   const data = { id, title, completed: false };
-  await axios.post(DATA_URL, data);
+  await addTodo(data);
+  //await axios.post(DATA_URL, data);
   return dispatch({
     type: CREATE_NEW_TODO,
     payload: data

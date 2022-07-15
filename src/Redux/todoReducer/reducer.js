@@ -5,7 +5,6 @@ const initialState = { todoList: [], dataToEdit: {} };
 
 const todoReducer = (state = initialState, action) => {
 
-  console.log(state.todoList);
   switch (action.type) {
     case FETCH_TODO:
       return {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addTodo, getAllTodo, deleteTodo, updateTodo } from "../../firebase/services/todo.services";
+import { addTodo, getAllTodo, deleteTodo, updateTodo, checkTodo } from "../../firebase/services/todo.services";
 import { FETCH_TODO, CREATE_NEW_TODO, DELETE_TODO, EDIT_TODO, DATA_TO_EDIT, CHECK_CURRENT_TODO } from "./types";
 
 
@@ -51,7 +51,7 @@ export const passDataToEdit = (id, todoList, dispatch) => {
 };
 
 export const handelEdit = async (id, editedTitle, data, dispatch) => {
-  console.log(data);
+
   const title = { ...data, title: editedTitle };
   //await axios.patch(`${DATA_URL}/${id}`, title);
   updateTodo(id, title);
@@ -65,11 +65,13 @@ export const handelEdit = async (id, editedTitle, data, dispatch) => {
 export const handelCheck = async (id, FilteredItemToCheck, dispatch) => {
 
   const itemAfterCheck = { completed: !FilteredItemToCheck[0].completed };
-  await axios.patch(`${DATA_URL}/${id}`, { completed: !FilteredItemToCheck[0].completed });
+  checkTodo(id, itemAfterCheck);
+  //await axios.patch(`${DATA_URL}/${id}`, { completed: !FilteredItemToCheck[0].completed });
   return dispatch({
     type: CHECK_CURRENT_TODO,
     payload: itemAfterCheck
   });
+
 };
 
 export const handelDelete = async (id, todoList, dispatch) => {

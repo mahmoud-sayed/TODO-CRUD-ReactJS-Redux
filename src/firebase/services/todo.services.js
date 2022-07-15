@@ -25,7 +25,11 @@ export const deleteTodo = (id) => {
   return deleteDoc(todoDoc);
 };
 
+export const checkTodo = (id, checkTodo) => {
+  const todoDoc = doc(db, 'todos', id);
+  return updateDoc(todoDoc, checkTodo);
 
+};
 
 export const gitSingleTodo = (id) => {
   const todoDoc = doc(db, 'todos', id);

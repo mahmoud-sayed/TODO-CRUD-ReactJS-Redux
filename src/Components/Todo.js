@@ -23,6 +23,7 @@ const Todo = ({ id, title, completed }) => {
   const checkAction = (id) => {
     const FilteredItemToCheck = todoList.filter(item => item.id === id);
     handelCheck(id, FilteredItemToCheck, dispatch);
+
   };
 
   return (
